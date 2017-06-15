@@ -29,7 +29,7 @@ $factory->define(
     function (Faker\Generator $faker)
 {
     return [
-        'title' => $faker->text,
+        'title' => $faker->text(60),
         'description' => $faker->paragraph,
         'image' => $faker->imageUrl($width = 640, $height = 480),
         'price' => $faker->numberBetween(1, 400000),
