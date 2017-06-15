@@ -12,7 +12,59 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+
+$factory->define(
+    App\Cart::class,
+    function (Faker\Generator $faker)
+    use ($factory)
+{
+    return [
+        'user_id' => $factory->create(App\Profile::class)->id,
+    ];
+});
+
+
+$factory->define(
+    App\Product::class,
+    function (Faker\Generator $faker)
+{
+    return [
+        'title' => $faker->text(60),
+        'description' => $faker->paragraph,
+        'image' => $faker->imageUrl($width = 640, $height = 480),
+        'price' => $faker->numberBetween(1, 400000),
+        'inventory' => $faker->numberBetween(1, 100),
+        'shipping' => $faker->numberBetween(1, 200),
+    ];
+});
+
+
+$factory->define(
+    App\Profile::class,
+    function (Faker\Generator $faker)
+{
+    return [
+        'first' => $faker->firstName,
+        'last' => $faker->lastName,
+        'limit' => $faker->numberBetween(200,1000000),
+    ];
+});
+
+
+$factory->define(
+    App\Promotion::class,
+    function (Faker\Generator $faker)
+{
+    return [
+        'title' => $faker->text,
+    ];
+});
+
+
+$factory->define(
+    App\User::class,
+    function (Faker\Generator $faker)
+{
     static $password;
 
     return [
