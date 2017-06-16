@@ -20,7 +20,7 @@
         {{product.description}}
     </v-card-text>
     <v-card-text class="pb-0 center-text">
-        ${{ product.price / 100 }} &nbsp; - &nbsp;
+        {{ product.price | money }} &nbsp; - &nbsp;
         Stock: {{product.inventory}}
     </v-card-text>
     <v-card-actions class="justify-center">
@@ -41,20 +41,11 @@
 </template>
 
 <style>
-  .center-text {
-    text-align: center;
-  }
-  .justify-center {
-    justify-content: center;
-  }
   .card-description {
     height: 100px;
     min-height: 100px;
     max-height: 100px;
     overflow: hidden;
-  }
-  .shadow-text {
-    text-shadow: 1px 1px #000000;
   }
 </style>
 

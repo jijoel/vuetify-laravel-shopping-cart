@@ -31,10 +31,10 @@ $factory->define(
     return [
         'title' => $faker->text(60),
         'description' => $faker->paragraph,
-        'image' => $faker->imageUrl($width = 640, $height = 480),
-        'price' => $faker->numberBetween(1, 400000),
-        'inventory' => $faker->numberBetween(1, 100),
-        'shipping' => $faker->numberBetween(1, 200),
+        'image' => $faker->imageUrl($width = 300, $height = 200),
+        'price' => $faker->biasedNumberBetween(1, 200000, 'cos'),
+        'inventory' => $faker->biasedNumberBetween(1, 100, 'cos'),
+        'shipping' => $faker->biasedNumberBetween(100, 10000, 'cos')
     ];
 });
 

@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div class="display-1">Your Cart</div>
+    <div class="display-1" style="text-align:center">Your Cart</div>
 
+    <v-card>
     <v-list two-line>
       <template v-for="item in items">
         <v-list-tile avatar :key="item.title">
@@ -15,7 +16,7 @@
             </v-list-tile-title>
             <v-list-tile-sub-title>
               Quantity: {{ item.quantity }} &nbsp; - &nbsp;
-              ${{ item.price / 100 }}
+              {{ item.price | money }}
             </v-list-tile-sub-title>
           </v-list-tile-content>
 
@@ -37,7 +38,7 @@
       <table class="datatable table">
         <tbody>
           <tr>
-            <td>Subtotal ({{ itemCount }} items):</td>
+            <td>Subtotal ({{ item_count }} items):</td>
             <td class="text-xs-right">{{ subtotal | money }}</td>
           </tr>
           <tr>
@@ -55,7 +56,18 @@
 
         </tbody>
       </table>
-    </div>
+    </div><!-- .table__overflow -->
+
+    <v-card-actions class="justify-center">
+      <v-btn primary
+        v-if="item_count > 0"
+        @click.native="checkout()"
+      >
+        Check Out
+      </v-btn>
+    </v-card-actions>
+
+  </v-card>
   </div>
 </template>
 
@@ -68,7 +80,7 @@ export default {
       return this.$store.getters.cartItems
     },
 
-    itemCount() {
+    item_count() {
       return this.items.reduce( (total, current) => {
         return total + current['quantity']
       }, 0);
@@ -84,8 +96,8 @@ export default {
 
     taxes() {
       return Math.floor(
-        100 * this.calculate('price') * .0466
-      ) / 100;
+        this.calculate('price') * .0466
+      );
     },
 
     grand_total() {
@@ -98,12 +110,16 @@ export default {
     calculate(value) {
       return this.items.reduce( (total, current) => {
         return total + (current[value] * current['quantity'])
-      }, 0) / 100;   // Return value in dollars
+      }, 0);
     },
 
     removeItem(item) {
       this.$store.dispatch('removeItemFromCart',item);
-    }
+    },
+
+    checkout() {
+      console.log('checking out');
+    },
 
   },
 
