@@ -20,6 +20,7 @@ require('vuetify');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
 Vue.component('shop', require('./components/StoreFront.vue'));
 Vue.component('SToolbar', require('./components/Toolbar.vue'));
 Vue.component('SCoupons', require('./components/Coupons.vue'));
