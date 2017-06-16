@@ -9,23 +9,43 @@
       <v-container fill-height fluid>
         <v-layout fill-height>
           <v-flex xs12 align-end flexbox>
-            <span class="headline">{{ product.title }}</span>
+            <span class="headline shadow-text">
+              {{ product.title }}
+            </span>
           </v-flex>
         </v-layout>
       </v-container>
     </v-card-media>
-    <v-card-text class="pb-0 fade-out" style="height:100px;min-height:100px;max-height:100px;overflow:hidden">
+    <v-card-text class="pb-0 fade-out card-description">
         {{product.description}}
     </v-card-text>
-    <v-card-text class="pb-0" style="text-align:center">
+    <v-card-text class="pb-0 center-text">
         ${{ product.price / 100 }} &nbsp; - &nbsp; Stock: {{product.inventory}}
     </v-card-text>
-    <v-card-actions style="justify-content:center">
+    <v-card-actions class="justify-center">
       <v-btn primary>Add to Cart</v-btn>
     </v-card-actions>
   </v-card>
 
 </template>
+
+<style>
+  .center-text {
+    text-align: center;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .card-description {
+    height: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    overflow: hidden;
+  }
+  .shadow-text {
+    text-shadow: 1px 1px #000000;
+  }
+</style>
 
 <script>
 export default {
