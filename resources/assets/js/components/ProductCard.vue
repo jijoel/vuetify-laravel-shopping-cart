@@ -14,7 +14,7 @@
         </v-layout>
       </v-container>
     </v-card-media>
-    <v-card-text class="pb-0">
+    <v-card-text class="pb-0 fade-out" style="height:100px;min-height:100px;max-height:100px;overflow:hidden">
         {{product.description}}
     </v-card-text>
     <v-card-text class="pb-0" style="text-align:center">
