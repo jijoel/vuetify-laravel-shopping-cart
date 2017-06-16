@@ -1,15 +1,6 @@
 const state = {
 
-  items: [
-    {
-      id: 5,
-      quantity: 1,
-    },
-    {
-      id: 7,
-      quantity: 3,
-    },
-  ]
+  items: [ ]
 
 }
 
