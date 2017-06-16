@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import * as actions from './shop/actions'
+import * as actions from './shop/actions'
 import * as getters from './shop/getters'
 import products from './shop/products'
 // import profile from './shop/modules/profile'
@@ -13,7 +13,7 @@ const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
   strict: debug,
 
-  // actions,
+  actions,
   getters,
 
   modules: {
