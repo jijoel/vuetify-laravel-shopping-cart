@@ -18,7 +18,7 @@
         {{product.description}}
     </v-card-text>
     <v-card-text class="pb-0" style="text-align:center">
-        {{product.price}} - Stock: {{product.inventory}}
+        ${{ product.price / 100 }} &nbsp; - &nbsp; Stock: {{product.inventory}}
     </v-card-text>
     <v-card-actions style="justify-content:center">
       <v-btn primary>Add to Cart</v-btn>
