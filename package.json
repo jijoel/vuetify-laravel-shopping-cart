@@ -22,7 +22,7 @@
     "stylus-loader": "^3.0.1",
     "vue": "^2.1.10",
     "vue-router": "^2.5.3",
-    "vuetify": "^0.12.7",
+    "vuetify": "https://github.com/vuetifyjs/vuetify-builds.git#dev",
     "vuex": "^2.3.1"
   }
 }
