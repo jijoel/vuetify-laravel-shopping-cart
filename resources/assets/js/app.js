@@ -27,6 +27,20 @@ Vue.component('SProductList', require('./components/ProductList.vue'));
 Vue.component('SProductCard', require('./components/ProductCard.vue'));
 Vue.component('SShoppingCart', require('./components/ShoppingCart.vue'));
 
+Vue.filter('money', (value) => {
+    // neither Intl.NumberFormat nor toLocaleString
+    // is working correctly, so doing a rough approximation
+
+    return '$' + value.toLocaleString({
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
+})
+
+
+
 import store from './store';
 
 const app = new Vue({

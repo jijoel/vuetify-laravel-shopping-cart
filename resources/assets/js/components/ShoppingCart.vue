@@ -29,26 +29,24 @@
       </template>
     </v-list>
 
-
-
     <div class="table__overflow">
       <table class="datatable table">
         <tbody>
           <tr>
             <td>Subtotal (0 items):</td>
-            <td class="text-xs-right">$0.00</td>
+            <td class="text-xs-right">{{ subtotal | money }}</td>
           </tr>
           <tr>
             <td>Shipping:</td>
-            <td class="text-xs-right">$0.00</td>
+            <td class="text-xs-right">{{ shipping | money }}</td>
           </tr>
           <tr>
             <td>Taxes:</td>
-            <td class="text-xs-right">$0.00</td>
+            <td class="text-xs-right">{{ taxes | money }}</td>
           </tr>
           <tr>
             <td><strong>Grand Total:</strong></td>
-            <td class="text-xs-right">$120.00</td>
+            <td class="text-xs-right">{{ grand_total | money }}</td>
           </tr>
 
         </tbody>
@@ -62,7 +60,40 @@
 export default {
 
   computed: {
-    items() { return this.$store.getters.cartItems },
+    items() {
+      return this.$store.getters.cartItems
+    },
+
+    subtotal() {
+      return this.calculate('price');
+    },
+
+    shipping() {
+      return this.calculate('shipping');
+    },
+
+    taxes() {
+      return Math.floor(
+        100 * this.calculate('price') * .0466
+      ) / 100;
+    },
+
+    grand_total() {
+      return this.subtotal + this.shipping + this.taxes
+    },
+  },
+
+  methods: {
+
+    calculate(value) {
+
+      let calculated = this.items.reduce( (total, current) => {
+        return total + (current[value] * current['quantity'])
+      }, 0);
+
+      return (calculated / 100);
+    },
+
   },
 
 
