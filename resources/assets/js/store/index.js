@@ -5,7 +5,7 @@ import * as getters from './shop/getters'
 import products from './shop/products'
 // import profile from './shop/modules/profile'
 // import promotions from './shop/modules/promotions'
-// import shoppingCart from './shop/modules/shopping-cart'
+import shoppingCart from './shop/shopping-cart'
 
 Vue.use(Vuex);
 const debug = process.env.NODE_ENV !== 'production'
@@ -20,7 +20,7 @@ export default new Vuex.Store({
     products,
   //   profile,
   //   promotions,
-  //   shoppingCart
+    shoppingCart
   },
 })
 
