@@ -1,5 +1,4 @@
 export const loadProducts = ({ commit }) => {
-  console.log(commit);
   axios.get('/api/products')
     .then((response) => {
       commit('LOAD_PRODUCTS', response.data);
@@ -11,3 +10,6 @@ export const loadProducts = ({ commit }) => {
     })
 }
 
+export const removeItemFromCart = ({ commit }, item) => {
+  commit('REMOVE_FROM_CART', item);
+}
