@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return $this->products->all();
+        return $this->products->take(10)->get();
     }
 
     /**

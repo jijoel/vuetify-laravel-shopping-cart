@@ -20,8 +20,16 @@ require('vuetify');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('shop', require('./components/Example.vue'));
+Vue.component('shop', require('./components/StoreFront.vue'));
+Vue.component('SToolbar', require('./components/Toolbar.vue'));
+Vue.component('SCoupons', require('./components/Coupons.vue'));
+Vue.component('SProductList', require('./components/ProductList.vue'));
+Vue.component('SProductCard', require('./components/ProductCard.vue'));
+Vue.component('SShoppingCart', require('./components/ShoppingCart.vue'));
+
+import store from './store';
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store,
 });

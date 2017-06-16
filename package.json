@@ -11,13 +11,18 @@
   },
   "devDependencies": {
     "axios": "^0.15.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^3.2.3",
     "jquery": "^3.1.1",
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
     "vue": "^2.1.10",
-    "vuetify": "^0.12.7",
+    "vue-router": "^2.5.3",
+    "vuetify": "https://github.com/vuetifyjs/vuetify-builds.git#dev",
     "vuex": "^2.3.1"
   }
 }
