@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar>
+  <v-toolbar class="indigo darken1">
     <v-toolbar-title>
       <span class="white--text">
         Store
