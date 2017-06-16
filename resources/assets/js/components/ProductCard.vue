@@ -20,10 +20,21 @@
         {{product.description}}
     </v-card-text>
     <v-card-text class="pb-0 center-text">
-        ${{ product.price / 100 }} &nbsp; - &nbsp; Stock: {{product.inventory}}
+        ${{ product.price / 100 }} &nbsp; - &nbsp;
+        Stock: {{product.inventory}}
     </v-card-text>
     <v-card-actions class="justify-center">
-      <v-btn primary>Add to Cart</v-btn>
+      <v-btn primary
+        v-if="product.inventory > 0"
+        @click.native="addToCart(product)"
+      >
+        Add to Cart
+      </v-btn>
+      <v-btn disabled
+        v-if="product.inventory <= 0"
+      >
+        Sold Out
+      </v-btn>
     </v-card-actions>
   </v-card>
 
@@ -57,6 +68,14 @@ export default {
       price: '',
       quantity: '',
     }
-  }
+  },
+
+  methods: {
+    addToCart(item) {
+      this.$store.dispatch('addItemToCart',item);
+    }
+  },
+
 }
+
 </script>

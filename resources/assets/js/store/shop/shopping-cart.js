@@ -1,15 +1,6 @@
 const state = {
 
-  items: [
-    {
-      id: 5,
-      quantity: 1,
-    },
-    {
-      id: 7,
-      quantity: 3,
-    },
-  ]
+  items: [ ]
 
 }
 
@@ -32,7 +23,7 @@ const mutations = {
 
   REMOVE_FROM_CART (state, removedProduct) {
     const index = state.items.findIndex(
-      (items) => items.id === item.id
+      (currentItem) => currentItem.id === removedProduct.id
     );
     state.items.splice(index, 1);
   }

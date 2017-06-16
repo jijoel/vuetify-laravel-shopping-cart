@@ -20,8 +20,12 @@
           </v-list-tile-content>
 
           <v-list-tile-action>
-            <v-btn icon ripple>
-              <v-icon class="grey--text text--lighten-1">close</v-icon>
+            <v-btn icon ripple
+              @click.native="removeItem(item)"
+            >
+              <v-icon class="grey--text text--lighten-1">
+                close
+              </v-icon>
             </v-btn>
           </v-list-tile-action>
 
@@ -33,7 +37,7 @@
       <table class="datatable table">
         <tbody>
           <tr>
-            <td>Subtotal (0 items):</td>
+            <td>Subtotal ({{ itemCount }} items):</td>
             <td class="text-xs-right">{{ subtotal | money }}</td>
           </tr>
           <tr>
@@ -46,7 +50,7 @@
           </tr>
           <tr>
             <td><strong>Grand Total:</strong></td>
-            <td class="text-xs-right">{{ grand_total | money }}</td>
+            <td class="text-xs-right"><strong>{{ grand_total | money }}</strong></td>
           </tr>
 
         </tbody>
@@ -62,6 +66,12 @@ export default {
   computed: {
     items() {
       return this.$store.getters.cartItems
+    },
+
+    itemCount() {
+      return this.items.reduce( (total, current) => {
+        return total + current['quantity']
+      }, 0);
     },
 
     subtotal() {
@@ -86,13 +96,14 @@ export default {
   methods: {
 
     calculate(value) {
-
-      let calculated = this.items.reduce( (total, current) => {
+      return this.items.reduce( (total, current) => {
         return total + (current[value] * current['quantity'])
-      }, 0);
-
-      return (calculated / 100);
+      }, 0) / 100;   // Return value in dollars
     },
+
+    removeItem(item) {
+      this.$store.dispatch('removeItemFromCart',item);
+    }
 
   },
 
