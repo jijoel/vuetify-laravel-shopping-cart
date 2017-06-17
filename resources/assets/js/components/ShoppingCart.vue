@@ -61,19 +61,29 @@
     <v-card-actions class="justify-center">
       <v-btn primary
         v-if="item_count > 0"
-        @click.native="checkout()"
+        @click.native.stop="checkout()"
       >
-        Check Out
+        Check out
       </v-btn>
     </v-card-actions>
 
   </v-card>
+
+  <s-checkout-dialog v-model="checkoutDialog">
+  </s-checkout-dialog>
+
   </div>
 </template>
 
 
 <script>
 export default {
+
+  data() {
+    return {
+      checkoutDialog: false,
+    }
+  },
 
   computed: {
     items() {
@@ -118,8 +128,8 @@ export default {
     },
 
     checkout() {
-      console.log('checking out');
-    },
+      this.checkoutDialog = true;
+    }
 
   },
 
