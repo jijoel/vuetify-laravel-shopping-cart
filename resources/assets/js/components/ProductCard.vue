@@ -16,7 +16,7 @@
         </v-layout>
       </v-container>
     </v-card-media>
-    <v-card-text class="pb-0 fade-out card-description">
+    <v-card-text class="pb-0 fade-out product-card-description">
         {{product.description}}
     </v-card-text>
     <v-card-text class="pb-0 center-text">
@@ -39,15 +39,6 @@
   </v-card>
 
 </template>
-
-<style>
-  .card-description {
-    height: 100px;
-    min-height: 100px;
-    max-height: 100px;
-    overflow: hidden;
-  }
-</style>
 
 <script>
 export default {
