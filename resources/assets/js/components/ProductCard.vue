@@ -1,6 +1,6 @@
 <template>
 
-  <v-card raised hover class="my-2" height="400px">
+  <v-card raised hover class="my-2" height="400px" style="min-width:200; max-width:300px">
     <v-card-media
       class="white--text"
       height="200px"
