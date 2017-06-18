@@ -99,6 +99,10 @@
               </v-flex>
             </v-layout>
 
+            <v-btn primary @click.native="steps = 3">
+              Continue
+            </v-btn>
+
           </v-stepper-content>
 
           <v-stepper-step editable step="3" :complete="steps > 3">
@@ -128,6 +132,21 @@
 
             </v-layout>
 
+            <v-btn primary @click.native="steps = 4">
+              Continue
+            </v-btn>
+
+          </v-stepper-content>
+
+          <v-stepper-step editable step="4" :complete="steps > 3">
+            Billing Information
+            <small>How shall we charge you?</small>
+          </v-stepper-step>
+          <v-stepper-content step="4">
+
+            <div id="stripe-element"></div>
+            {{ stripe.error }}
+
           </v-stepper-content>
         </v-stepper>
 
@@ -135,7 +154,7 @@
           <v-spacer></v-spacer>
           <v-btn primary
             class="white--text darken-1"
-            @click.native="valueChanged(false)"
+            @click.native.prevent="clickPurchaseButton"
           >
             Purchase
           </v-btn>
@@ -155,6 +174,7 @@
 
 
 <script>
+import loadScript from '../loadScript';
 export default {
 
   props: {
@@ -177,8 +197,14 @@ export default {
           state: '',
           zip: '',
           country: '',
-        }
-      }
+        },
+        stripe_token: '',
+      },
+      stripe: {
+        stripe: {},
+        card: {},
+        error: {},
+      },
     };
   },
 
@@ -187,10 +213,9 @@ export default {
       return window.innerWidth < 600;
     },
     dialogTransition() {
-      if (this.isTiny)
-        return 'v-dialog-bottom-transition';
-
-      return 'v-dialog-transition';
+      return (this.isTiny)
+        ? 'v-dialog-bottom-transition'
+        : 'v-dialog-transition';
     },
   },
 
@@ -199,7 +224,50 @@ export default {
       this.value = val
       this.$emit("input", val)
     },
+
+    clickPurchaseButton() {
+      this.createToken();
+      console.log(this.form);
+    },
+
+    createToken() {
+      this.stripe.stripe
+        .createToken(this.stripe.card)
+        .then((result) => {
+          if (result.error)
+            this.stripe.error = result.error.message;
+          else
+            this.form.stripe_token = result.token;
+        });
+    },
+
+    buildStripeElement() {
+      this.stripe.stripe = Stripe('pk_test_IlR1Cb2Jgi7D3A6okwhsSRFr');
+      var elements = this.stripe.stripe.elements();
+      this.stripe.card = elements.create('card', {});
+      this.stripe.card.mount('#stripe-element');
+      this.stripe.card.addEventListener('change', (event) => {
+          this.stripe.error = event.error
+            ? event.error.message
+            : '';
+      });
+    },
+
   },
+
+  watch: {
+    value() {
+      if (! this.value || (typeof Stripe === "function"))
+        return;
+
+      loadScript('https://js.stripe.com/v3/')
+        .then(() => this.buildStripeElement())
+        .catch( (error) => console.log(error) );
+    }
+  },
+
 
 }
 </script>
+
+
