@@ -34,29 +34,7 @@
       </template>
     </v-list>
 
-    <div class="table__overflow">
-      <table class="datatable table">
-        <tbody>
-          <tr>
-            <td>Subtotal ({{ item_count }} items):</td>
-            <td class="text-xs-right">{{ subtotal | money }}</td>
-          </tr>
-          <tr>
-            <td>Shipping:</td>
-            <td class="text-xs-right">{{ shipping | money }}</td>
-          </tr>
-          <tr>
-            <td>Taxes:</td>
-            <td class="text-xs-right">{{ taxes | money }}</td>
-          </tr>
-          <tr>
-            <td><strong>Grand Total:</strong></td>
-            <td class="text-xs-right"><strong>{{ grand_total | money }}</strong></td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div><!-- .table__overflow -->
+    <s-shopping-cart-totals></s-shopping-cart-totals>
 
     <v-card-actions class="justify-center">
       <v-btn primary
@@ -86,42 +64,11 @@ export default {
   },
 
   computed: {
-    items() {
-      return this.$store.getters.cartItems
-    },
-
-    item_count() {
-      return this.items.reduce( (total, current) => {
-        return total + current['quantity']
-      }, 0);
-    },
-
-    subtotal() {
-      return this.calculate('price');
-    },
-
-    shipping() {
-      return this.calculate('shipping');
-    },
-
-    taxes() {
-      return Math.floor(
-        this.calculate('price') * .0466
-      );
-    },
-
-    grand_total() {
-      return this.subtotal + this.shipping + this.taxes
-    },
+    items() { return this.$store.getters.cartItems },
+    item_count() { return this.$store.getters.cartItemCount },
   },
 
   methods: {
-
-    calculate(value) {
-      return this.items.reduce( (total, current) => {
-        return total + (current[value] * current['quantity'])
-      }, 0);
-    },
 
     removeItem(item) {
       this.$store.dispatch('removeItemFromCart',item);

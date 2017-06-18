@@ -12,19 +12,16 @@ export default {
     };
   },
 
-  watch: {
-    // Load stripe when the dialog is opened
-    value() {
-      if (! this.value || (typeof Stripe === "function"))
+  methods: {
+
+    loadPaymentProcessor() {
+      if (typeof Stripe === "function")
         return;
 
       loadScript('https://js.stripe.com/v3/')
         .then(() => this.buildStripeElement())
         .catch( (error) => console.log(error) );
-    }
-  },
-
-  methods: {
+    },
 
     createToken() {
       this.stripe.stripe

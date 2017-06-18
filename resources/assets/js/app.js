@@ -30,6 +30,7 @@ Vue.component('SCoupons', require('./components/Coupons.vue'));
 Vue.component('SProductList', require('./components/ProductList.vue'));
 Vue.component('SProductCard', require('./components/ProductCard.vue'));
 Vue.component('SShoppingCart', require('./components/ShoppingCart.vue'));
+Vue.component('SShoppingCartTotals', require('./components/ShoppingCartTotals.vue'));
 Vue.component('SCheckoutDialog', require('./components/CheckOutDialog.vue'));
 
 Vue.filter('money', (value) => {

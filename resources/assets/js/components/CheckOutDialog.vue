@@ -112,6 +112,8 @@
           </v-stepper-step>
           <v-stepper-content step="3">
 
+            <s-shopping-cart-totals></s-shopping-cart-totals>
+
             <p>
               Please enter your credit card information
               below:
@@ -205,6 +207,12 @@ export default {
     },
 
   },
+
+  watch: {
+    value() {
+      this.value && this.loadPaymentProcessor();
+    },
+  }
 
 
 }
