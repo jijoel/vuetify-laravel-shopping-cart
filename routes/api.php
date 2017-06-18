@@ -17,6 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('checkout', 'CheckoutController@store');
+
 Route::resource('products', ProductController::class);
 Route::resource('profiles', ProfileController::class);
 Route::resource('promotions', PromotionController::class);
