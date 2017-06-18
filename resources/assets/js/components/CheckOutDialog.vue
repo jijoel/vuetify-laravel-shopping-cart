@@ -112,8 +112,14 @@
           </v-stepper-step>
           <v-stepper-content step="3">
 
+            <p>
+              Please enter your credit card information
+              below:
+            </p>
             <div id="stripe-element"></div>
-            {{ stripe.error }}
+            <span class="red--text">
+              {{ stripe.error }}
+            </span>
 
           </v-stepper-content>
         </v-stepper>
@@ -203,5 +209,4 @@ export default {
 
 }
 </script>
-
 

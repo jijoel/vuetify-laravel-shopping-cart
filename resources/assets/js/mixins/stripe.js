@@ -7,7 +7,7 @@ export default {
       stripe: {
         stripe: {},
         card: {},
-        error: {},
+        error: '',
       },
     };
   },
@@ -23,7 +23,6 @@ export default {
         .catch( (error) => console.log(error) );
     }
   },
-
 
   methods: {
 
@@ -41,7 +40,30 @@ export default {
     buildStripeElement() {
       this.stripe.stripe = Stripe('pk_test_IlR1Cb2Jgi7D3A6okwhsSRFr');
       var elements = this.stripe.stripe.elements();
-      this.stripe.card = elements.create('card', {});
+      this.stripe.card = elements.create('card', {
+        iconStyle: 'solid',
+        style: {
+          base: {
+            lineHeight: '36px',
+            // fontWeight: 300,
+            // fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSize: '16px',
+
+            '::placeholder': {
+              color: '#8898AA',
+            },
+          },
+          invalid: {
+            iconColor: '#e85746',
+            color: '#e85746',
+          }
+        },
+        classes: {
+          focus: 'is-focused',
+          empty: 'is-empty',
+        },
+
+      });
       this.stripe.card.mount('#stripe-element');
       this.stripe.card.addEventListener('change', (event) => {
           this.stripe.error = event.error
