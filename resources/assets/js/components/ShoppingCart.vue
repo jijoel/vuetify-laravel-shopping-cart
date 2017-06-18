@@ -86,42 +86,15 @@ export default {
   },
 
   computed: {
-    items() {
-      return this.$store.getters.cartItems
-    },
-
-    item_count() {
-      return this.items.reduce( (total, current) => {
-        return total + current['quantity']
-      }, 0);
-    },
-
-    subtotal() {
-      return this.calculate('price');
-    },
-
-    shipping() {
-      return this.calculate('shipping');
-    },
-
-    taxes() {
-      return Math.floor(
-        this.calculate('price') * .0466
-      );
-    },
-
-    grand_total() {
-      return this.subtotal + this.shipping + this.taxes
-    },
+    items() { return this.$store.getters.cartItems },
+    item_count() { return this.$store.getters.cartItemCount },
+    subtotal() { return this.$store.getters.cartSubtotal },
+    shipping() { return this.$store.getters.cartShipping },
+    taxes() { return this.$store.getters.cartTaxes },
+    grand_total() { return this.$store.getters.cartGrandTotal },
   },
 
   methods: {
-
-    calculate(value) {
-      return this.items.reduce( (total, current) => {
-        return total + (current[value] * current['quantity'])
-      }, 0);
-    },
 
     removeItem(item) {
       this.$store.dispatch('removeItemFromCart',item);
