@@ -10,10 +10,10 @@
       <s-coupons></s-coupons>
 
       <v-layout row wrap>
-        <v-flex xs12 sm8 md9 lg10 order-xs2 order-sm1>
+        <v-flex xs12 sm8 md9 lg10 order-xs2 order-sm1 style="flex:1">
           <s-product-list></s-product-list>
         </v-flex>
-        <v-flex xs12 sm4 md3 lg2 order-xs1 order-sm2>
+        <v-flex xs12 sm4 md3 lg2 order-xs1 order-sm2 style="flex:1;min-width:360px">
           <s-shopping-cart></s-shopping-cart>
         </v-flex>
       </v-layout>

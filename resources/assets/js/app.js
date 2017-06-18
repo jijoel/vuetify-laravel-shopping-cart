@@ -20,6 +20,9 @@ require('vuetify');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('VCardRow', {
+    template: '<div><slot></slot></div>',
+})
 
 Vue.component('shop', require('./components/StoreFront.vue'));
 Vue.component('SToolbar', require('./components/Toolbar.vue'));
@@ -27,6 +30,7 @@ Vue.component('SCoupons', require('./components/Coupons.vue'));
 Vue.component('SProductList', require('./components/ProductList.vue'));
 Vue.component('SProductCard', require('./components/ProductCard.vue'));
 Vue.component('SShoppingCart', require('./components/ShoppingCart.vue'));
+Vue.component('SCheckoutDialog', require('./components/CheckOutDialog.vue'));
 
 Vue.filter('money', (value) => {
     // We get cents, and return a formatted dollar amount.
