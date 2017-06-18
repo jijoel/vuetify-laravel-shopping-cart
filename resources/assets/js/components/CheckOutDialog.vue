@@ -177,7 +177,6 @@ export default {
           zip: '',
           country: '',
         },
-        stripe_token: '',
       },
     };
   },
@@ -202,8 +201,12 @@ export default {
     clickPurchaseButton() {
       this.createToken();
 
-      // TODO: Submit the form to the server
       console.log(this.form);
+      axios.post('/api/checkout', Object.assign({
+        stripe_token: this.stripe.token
+      }, this.form))
+      .then((response) => { console.log(response) })
+      .catch((error) => { console.log(error) })
     },
 
   },
