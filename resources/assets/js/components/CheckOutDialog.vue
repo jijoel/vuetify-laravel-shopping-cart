@@ -105,44 +105,12 @@
 
           </v-stepper-content>
 
+
           <v-stepper-step editable step="3" :complete="steps > 3">
             Billing Information
             <small>How shall we charge you?</small>
           </v-stepper-step>
           <v-stepper-content step="3">
-
-            <v-text-field
-              name="card"
-              label="Card Number"
-            ></v-text-field>
-
-            <v-layout row wrap>
-              <v-flex xs6>
-                <v-text-field
-                  name="expiration"
-                  label="Expiration"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs6>
-                <v-text-field
-                  name="cvc"
-                  label="CVC"
-                ></v-text-field>
-              </v-flex>
-
-            </v-layout>
-
-            <v-btn primary @click.native="steps = 4">
-              Continue
-            </v-btn>
-
-          </v-stepper-content>
-
-          <v-stepper-step editable step="4" :complete="steps > 3">
-            Billing Information
-            <small>How shall we charge you?</small>
-          </v-stepper-step>
-          <v-stepper-content step="4">
 
             <div id="stripe-element"></div>
             {{ stripe.error }}
@@ -174,8 +142,11 @@
 
 
 <script>
-import loadScript from '../loadScript';
+import Stripe from '../mixins/stripe';
+
 export default {
+
+  mixins: [ Stripe ],
 
   props: {
     value: {
@@ -200,11 +171,6 @@ export default {
         },
         stripe_token: '',
       },
-      stripe: {
-        stripe: {},
-        card: {},
-        error: {},
-      },
     };
   },
 
@@ -227,43 +193,11 @@ export default {
 
     clickPurchaseButton() {
       this.createToken();
+
+      // TODO: Submit the form to the server
       console.log(this.form);
     },
 
-    createToken() {
-      this.stripe.stripe
-        .createToken(this.stripe.card)
-        .then((result) => {
-          if (result.error)
-            this.stripe.error = result.error.message;
-          else
-            this.form.stripe_token = result.token;
-        });
-    },
-
-    buildStripeElement() {
-      this.stripe.stripe = Stripe('pk_test_IlR1Cb2Jgi7D3A6okwhsSRFr');
-      var elements = this.stripe.stripe.elements();
-      this.stripe.card = elements.create('card', {});
-      this.stripe.card.mount('#stripe-element');
-      this.stripe.card.addEventListener('change', (event) => {
-          this.stripe.error = event.error
-            ? event.error.message
-            : '';
-      });
-    },
-
-  },
-
-  watch: {
-    value() {
-      if (! this.value || (typeof Stripe === "function"))
-        return;
-
-      loadScript('https://js.stripe.com/v3/')
-        .then(() => this.buildStripeElement())
-        .catch( (error) => console.log(error) );
-    }
   },
 
 
