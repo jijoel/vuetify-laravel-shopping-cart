@@ -9,6 +9,7 @@
         "jijoel/sanitization-filters": "^0.1.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
+        "stripe/stripe-php": "^4.12",
         "waavi/sanitizer": "^1.0"
     },
     "require-dev": {
