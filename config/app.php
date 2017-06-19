@@ -167,6 +167,9 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        Waavi\Sanitizer\Laravel\SanitizerServiceProvider::class,
+        Jijoel\Sanitizer\Laravel\SanitizerServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -226,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Sanitizer' => Waavi\Sanitizer\Laravel\Facade::class,
     ],
 
 ];

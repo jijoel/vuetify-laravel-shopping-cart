@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "282325bf802015b45f09e4a7b6a21861",
+    "content-hash": "a33c6b0de733f0b8751c9f9471e3b1f6",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -234,6 +234,56 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "jijoel/sanitization-filters",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jijoel/sanitization-filters.git",
+                "reference": "532930e6deab958b4405d5fad30aeb54c384110a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jijoel/sanitization-filters/zipball/532930e6deab958b4405d5fad30aeb54c384110a",
+                "reference": "532930e6deab958b4405d5fad30aeb54c384110a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.0",
+                "nesbot/carbon": "^1.0",
+                "waavi/sanitizer": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jijoel\\Sanitizer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joel Hatch",
+                    "email": "jijoel@yahoo.com"
+                }
+            ],
+            "description": "Data sanitizer filters for use with waavi/sanitizer",
+            "keywords": [
+                "input",
+                "input filter",
+                "input sanitation",
+                "input sanitizer",
+                "laravel",
+                "sanitation",
+                "transform input"
+            ],
+            "time": "2017-06-19T03:30:22+00:00"
         },
         {
             "name": "laravel/framework",
@@ -1884,6 +1934,55 @@
                 "environment"
             ],
             "time": "2016-09-01T10:05:43+00:00"
+        },
+        {
+            "name": "waavi/sanitizer",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Waavi/Sanitizer.git",
+                "reference": "02557d33b1a12ed2139815d9eb6b03c5eb29f261"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Waavi/Sanitizer/zipball/02557d33b1a12ed2139815d9eb6b03c5eb29f261",
+                "reference": "02557d33b1a12ed2139815d9eb6b03c5eb29f261",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.3",
+                "nesbot/carbon": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Waavi\\Sanitizer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Wallace San Paulo",
+                    "email": "info@waavi.com"
+                }
+            ],
+            "description": "Data sanitizer and Laravel 5 form requests with input sanitation.",
+            "keywords": [
+                "input",
+                "input filter",
+                "input sanitation",
+                "input sanitizer",
+                "laravel",
+                "sanitation",
+                "transform input"
+            ],
+            "time": "2017-04-11T12:25:13+00:00"
         }
     ],
     "packages-dev": [
