@@ -45,6 +45,7 @@ class CheckoutTest extends TestCase
             [['shipping'=>['zip'=>null]]],
             [['shipping'=>['country'=>null]]],
             [['stripe_token'=>[]]],  // must have id
+            [['items'=>[]]],  // must have items
         );
     }
 
@@ -83,6 +84,9 @@ class CheckoutTest extends TestCase
                     'exp_year' => $faker->year,
                     'last4' => $faker->randomNumber(4),
                 ]
+            ],
+            'items' => [
+                [ 'id' => 1, 'quantity' => 1 ],
             ],
         ], $input);
     }

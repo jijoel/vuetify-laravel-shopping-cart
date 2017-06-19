@@ -34,6 +34,8 @@ class CheckoutRequest extends FormRequest
             'shipping.zip' => 'required',
             'shipping.country' => 'required',
             'stripe_token.id' => 'required',
+            'items' => 'required|filled',
+            'items.*.id' => 'required',
         ];
     }
 

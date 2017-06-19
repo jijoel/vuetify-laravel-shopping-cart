@@ -182,6 +182,7 @@ export default {
   },
 
   computed: {
+    items() { return this.$store.getters.cartItemList },
     isTiny() {
       return window.innerWidth < 600;
     },
@@ -201,9 +202,9 @@ export default {
     clickPurchaseButton() {
       this.createToken();
 
-      console.log(this.form);
       axios.post('/api/checkout', Object.assign({
-        stripe_token: this.stripe.token
+        stripe_token: this.stripe.token,
+        items: this.items,
       }, this.form))
       .then((response) => { console.log(response) })
       .catch((error) => { console.log(error) })
