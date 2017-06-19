@@ -10,7 +10,7 @@ use App\Promotion;
 
 class PromotionTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseMigrations;
 
     /**
      * @test

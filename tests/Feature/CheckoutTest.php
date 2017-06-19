@@ -5,12 +5,12 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Faker\Factory as FakerFactory;
-// use App\Product;
+
 
 /** @group now */
 class CheckoutTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseMigrations;
 
     /**
      * @test
@@ -44,7 +44,7 @@ class CheckoutTest extends TestCase
             [['shipping'=>['state'=>null]]],
             [['shipping'=>['zip'=>null]]],
             [['shipping'=>['country'=>null]]],
-            [['stripe_token'=>[]]],
+            [['stripe_token'=>[]]],  // must have id
         );
     }
 

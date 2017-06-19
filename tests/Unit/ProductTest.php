@@ -9,7 +9,7 @@ use App\Product;
 
 class ProductTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseMigrations;
 
     /**
      * @test
