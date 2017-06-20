@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use SebastianBergmann\Environment\Console;
 
 class Handler extends ExceptionHandler
 {
@@ -32,7 +33,32 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        if ($this->shouldntReport($exception))
+            return;
+
+        if (app()->environment() === 'testing') {
+            error_log("\033[41m{$exception->getMessage()}\033[0m");
+
+            error_log($this->getCaller($exception));
+        }
+
         parent::report($exception);
+    }
+
+    private function getCaller($exception)
+    {
+        $trace = explode("\n", $exception->getTraceAsString());
+
+        $internal = array_filter($trace, function($value) {
+            return strpos($value, '[internal function]') !== false;
+        });
+
+        $callers = [];
+        foreach($internal as $key => $value) {
+            if ($key > 0)
+                $callers[] = $trace[$key - 1];
+        }
+        return implode("\n", $callers);
     }
 
     /**

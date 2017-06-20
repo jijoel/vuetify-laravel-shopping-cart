@@ -10,7 +10,7 @@ use App\Profile;
 
 class ProfileTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseMigrations;
 
     /**
      * @test

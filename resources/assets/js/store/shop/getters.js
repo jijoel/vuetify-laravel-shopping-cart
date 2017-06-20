@@ -2,6 +2,10 @@ export const products = state => {
     return state.products.items
 };
 
+export const cartItemList = state => {
+    return state.shoppingCart.items;
+}
+
 export const cartItems = state => {
     let items = state.shoppingCart.items;
     let cart = [];

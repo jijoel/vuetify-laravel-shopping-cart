@@ -7,7 +7,9 @@ export default {
       stripe: {
         stripe: {},
         card: {},
+        errors: {},
         error: '',
+        token: {},
       },
     };
   },
@@ -27,10 +29,13 @@ export default {
       this.stripe.stripe
         .createToken(this.stripe.card)
         .then((result) => {
-          if (result.error)
+          if (result.error) {
+            this.stripe.token = {};
+            this.stripe.errors = result.error;
             this.stripe.error = result.error.message;
-          else
-            this.form.stripe_token = result.token;
+          } else {
+            this.stripe.token = result.token;
+          }
         });
     },
 
