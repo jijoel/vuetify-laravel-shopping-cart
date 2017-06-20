@@ -36,6 +36,7 @@ class CheckoutRequest extends FormRequest
             'stripe_token.id' => 'required',
             'items' => 'required|filled',
             'items.*.id' => 'required',
+            'total' => 'required|numeric',
         ];
     }
 

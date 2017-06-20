@@ -183,6 +183,8 @@ export default {
 
   computed: {
     items() { return this.$store.getters.cartItemList },
+    grand_total() { return this.$store.getters.cartGrandTotal },
+
     isTiny() {
       return window.innerWidth < 600;
     },
@@ -205,6 +207,7 @@ export default {
       axios.post('/api/checkout', Object.assign({
         stripe_token: this.stripe.token,
         items: this.items,
+        total: this.grand_total,
       }, this.form))
       .then((response) => { console.log(response) })
       .catch((error) => { console.log(error) })

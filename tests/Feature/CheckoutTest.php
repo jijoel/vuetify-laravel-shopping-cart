@@ -5,9 +5,9 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Faker\Factory as FakerFactory;
+use Mockery;
 
 
-/** @group now */
 class CheckoutTest extends TestCase
 {
     use DatabaseMigrations;
@@ -44,8 +44,9 @@ class CheckoutTest extends TestCase
             [['shipping'=>['state'=>null]]],
             [['shipping'=>['zip'=>null]]],
             [['shipping'=>['country'=>null]]],
-            [['stripe_token'=>[]]],  // must have id
+            [['stripe_token'=>[]]],  // must have token id
             [['items'=>[]]],  // must have items
+            [['total'=>null]],
         );
     }
 
@@ -54,9 +55,20 @@ class CheckoutTest extends TestCase
      */
     public function it_can_successfully_check_out()
     {
+        $stripe = Mockery::mock('Stripe\Stripe')
+            ->shouldReceive('setApiKey')->once()
+            ->getMock();
+        app()->instance('Stripe\Stripe', $stripe);
+
+        $charge = Mockery::mock('Stripe\Charge')
+            ->shouldReceive('create')->once()
+            ->with(Mockery::subset([ 'amount' => 2400]))
+            ->getMock();
+        app()->instance('Stripe\Charge', $charge);
+
         $this->postJson(
             '/api/checkout',
-            $this->getFakeCheckout()
+            $this->getFakeCheckout(['total' => 2400])
         )->assertStatus(200);
     }
 
@@ -88,6 +100,7 @@ class CheckoutTest extends TestCase
             'items' => [
                 [ 'id' => 1, 'quantity' => 1 ],
             ],
+            'total' => $faker->biasedNumberBetween(1, 200000, 'cos'),
         ], $input);
     }
 
