@@ -33,6 +33,12 @@ return [
 
     'connections' => [
 
+        'dusk' => [
+            'driver' => 'sqlite',
+            'database' => database_path('dusk.sqlite'),
+            'prefix' => '',
+        ],
+
         'testing' => [
             'driver' => 'sqlite',
             'database' => ':memory:',
