@@ -7,6 +7,7 @@
       </v-flex>
       <v-flex>
         <v-text-field
+          id="product-search"
           append-icon="search"
           label="Search"
           single-line
