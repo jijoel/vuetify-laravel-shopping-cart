@@ -39,7 +39,7 @@ export const cartShipping = state => {
 
 export const cartTaxes = state => {
     return Math.floor(
-        calculateCart(state, 'price') * .0466 // TODO: tax rate
+        calculateCart(state, 'price') * .04166 // TODO: tax rate
     );
 }
 

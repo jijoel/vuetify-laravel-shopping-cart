@@ -8,4 +8,5 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 .env
+.env.dusk.local
 .DS_Store
