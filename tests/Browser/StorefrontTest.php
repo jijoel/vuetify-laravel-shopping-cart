@@ -62,6 +62,7 @@ class StorefrontTest extends DuskTestCase
 
     /**
      * @test
+     * @group now
      */
     public function it_can_search_for_items()
     {
@@ -79,16 +80,37 @@ class StorefrontTest extends DuskTestCase
                 ->assertSee('Fizz');
 
             $browser->keys('#product-search', 'F')
-                ->pause(100)
+                ->pause(300)
                 ->assertSee('Foo')
                 ->assertSee('Fizz')
                 ->assertDontSee('Boo');
 
             $browser->keys('#product-search', 'Fo')
-                ->pause(100)
+                ->pause(300)
                 ->assertSee('Foo')
                 ->assertDontSee('Fizz')
                 ->assertDontSee('Boo');
+        });
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_errors_if_checkout_data_not_entered()
+    {
+        factory(Product::class)->create();
+
+        $this->browse(function (Browser $browser) {
+            // Let the page load
+            $browser->visit('/')
+                ->waitForText('ADD TO CART')
+                ->press('ADD TO CART');
+
+            // Currently, this does not work due to a bug in vuetify
+            // $browser->press('CHECK OUT')
+            //     ->waitForText('Check Out', '.dialog')
+            //     ->press('PURCHASE')
+            //     ->assertSee('Please enter your name');
         });
     }
 }

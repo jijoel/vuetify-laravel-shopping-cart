@@ -17,8 +17,10 @@ export default {
   methods: {
 
     loadPaymentProcessor() {
-      if (typeof Stripe === "function")
+      if (typeof Stripe === "function") {
+        this.buildStripeElement();
         return;
+      }
 
       loadScript('https://js.stripe.com/v3/')
         .then(() => this.buildStripeElement())

@@ -15,8 +15,8 @@
           </span>
         </v-card-title>
 
-        <v-stepper v-model="steps" vertical non-linear>
-          <v-stepper-step editable step="1" :complete="steps > 1">
+        <v-stepper v-model="step" vertical non-linear>
+          <v-stepper-step editable step="1" :complete="step > 1">
             Contact
             <small>How can we reach you?</small>
           </v-stepper-step>
@@ -28,6 +28,7 @@
               label="Name"
               hint="Please enter your name"
               required
+              :error-messages="getErrors('name')"
             ></v-text-field>
 
             <v-layout row wrap>
@@ -50,12 +51,12 @@
               </v-flex>
             </v-layout>
 
-            <v-btn primary @click.native="steps = 2">
+            <v-btn primary @click.native="step = 2">
               Continue
             </v-btn>
           </v-stepper-content>
 
-          <v-stepper-step editable step="2" :complete="steps > 3">
+          <v-stepper-step editable step="2" :complete="step > 3">
             Shipping Address
             <small>Where shall we ship?</small>
           </v-stepper-step>
@@ -99,14 +100,14 @@
               </v-flex>
             </v-layout>
 
-            <v-btn primary @click.native="steps = 3">
+            <v-btn primary @click.native="step = 3">
               Continue
             </v-btn>
 
           </v-stepper-content>
 
 
-          <v-stepper-step editable step="3" :complete="steps > 3">
+          <v-stepper-step editable step="3" :complete="step > 3">
             Billing Information
             <small>How shall we charge you?</small>
           </v-stepper-step>
@@ -125,6 +126,7 @@
 
           </v-stepper-content>
         </v-stepper>
+
 
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -165,7 +167,7 @@ export default {
 
   data() {
     return {
-      steps: 1,
+      step: 1,
       form: {
         name: '',
         email: '',
@@ -178,6 +180,7 @@ export default {
           country: '',
         },
       },
+      errors: {},
     };
   },
 
@@ -209,9 +212,20 @@ export default {
         items: this.items,
         total: this.grand_total,
       }, this.form))
-      .then((response) => { console.log(response) })
-      .catch((error) => { console.log(error) })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        this.errors = error.response.data;
+      })
     },
+
+    getErrors(field) {
+      if ( typeof this.errors[field] !== 'undefined' )
+        return this.errors[field].join(' ');
+
+      return '';
+    }
 
   },
 

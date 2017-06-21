@@ -40,6 +40,20 @@ class CheckoutRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'name.required' => 'Please enter your name',
+            'email.required' => 'Please enter your email address',
+            'email.email' => 'Please check your email address',
+            'shipping.address.required' => 'Please your the street address',
+            'shipping.city.required' => 'Please enter the name of your city',
+            'shipping.state.required' => 'Please enter your state',
+            'shipping.zip.required' => 'Please enter your zip code',
+            'shipping.country.required' => 'Please enter your country name',
+        ];
+    }
+
     /**
      *  Filters to be applied to the input.
      *
