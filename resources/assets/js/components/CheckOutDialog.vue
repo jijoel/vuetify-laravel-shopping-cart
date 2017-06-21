@@ -5,7 +5,7 @@
     :value="value"
     :fullscreen="isTiny"
     :transition="dialogTransition"
-    @input="valueChanged($evt)"
+    @input="valueChanged($event)"
   >
     <v-card>
       <form>
@@ -37,6 +37,7 @@
                   v-model="form.email"
                   name="email"
                   label="Email Address"
+                  :error-messages="getErrors('email')"
                   hint="Your email address"
                   required
                 ></v-text-field>
@@ -46,6 +47,7 @@
                   v-model="form.phone"
                   name="phone"
                   label="Phone Number"
+                  :error-messages="getErrors('phone')"
                   hint="A number where we can contact you"
                 ></v-text-field>
               </v-flex>
@@ -67,12 +69,14 @@
               name="country"
               label="Country"
               hint="Please enter your country"
+              :error-messages="getErrors('shipping.country')"
             ></v-text-field>
 
             <v-text-field
               v-model="form.shipping.address"
               name="address"
               label="Street Address"
+              :error-messages="getErrors('shipping.address')"
             ></v-text-field>
 
             <v-layout row wrap>
@@ -81,6 +85,7 @@
                   v-model="form.shipping.city"
                   name="city"
                   label="City"
+                  :error-messages="getErrors('shipping.city')"
                 ></v-text-field>
               </v-flex>
               <v-flex xs12 sm3>
@@ -88,6 +93,7 @@
                   v-model="form.shipping.state"
                   name="state"
                   label="State"
+                  :error-messages="getErrors('shipping.state')"
                 ></v-text-field>
               </v-flex>
               <v-flex xs12 sm3>
@@ -95,6 +101,7 @@
                   v-model="form.shipping.zip"
                   name="zip"
                   label="Zip Code"
+                  :error-messages="getErrors('shipping.zip')"
                   hint="Your postal code"
                 ></v-text-field>
               </v-flex>
@@ -153,10 +160,11 @@
 
 <script>
 import Stripe from '../mixins/stripe';
+import InputValidation from '../mixins/InputValidation';
 
 export default {
 
-  mixins: [ Stripe ],
+  mixins: [ Stripe, InputValidation ],
 
   props: {
     value: {
@@ -180,7 +188,6 @@ export default {
           country: '',
         },
       },
-      errors: {},
     };
   },
 
@@ -215,18 +222,8 @@ export default {
       .then((response) => {
         console.log(response);
       })
-      .catch((error) => {
-        this.errors = error.response.data;
-      })
+      .catch((error) => this.setErrors(error.response.data))
     },
-
-    getErrors(field) {
-      if ( typeof this.errors[field] !== 'undefined' )
-        return this.errors[field].join(' ');
-
-      return '';
-    }
-
   },
 
   watch: {
