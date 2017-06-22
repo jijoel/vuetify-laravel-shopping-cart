@@ -13,7 +13,7 @@
   </head>
   <body>
     <div id="app">
-      <shop></shop>
+      <s-store-front></s-store-front>
     </div>
 
     <script type="text/javascript" src="{{mix('js/app.js')}}"></script>

@@ -31,7 +31,9 @@ $factory->define(
     return [
         'title' => $faker->text(60),
         'description' => $faker->paragraph,
-        'image' => $faker->imageUrl($width = 300, $height = 200),
+        'image' => config('settings.demo')
+            ? $faker->imageUrl($width = 600, $height = 400)
+            : '/images/dev/640x480.png',
         'price' => $faker->biasedNumberBetween(1, 200000, 'cos'),
         'inventory' => $faker->biasedNumberBetween(1, 100, 'cos'),
         'shipping' => $faker->biasedNumberBetween(100, 10000, 'cos')
