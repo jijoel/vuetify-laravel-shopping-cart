@@ -1,6 +1,6 @@
 # Vuetify Laravel Shopping Cart
 
-![screenshot](/docs/checkout_screen.png?raw=true "Store Front")
+![screenshot](/docs/storefront.png?raw=true "Store Front")
 
 This is an experimental shopping cart with Vuetify and Laravel. It's my attempt to learn how to put all of the pieces of a simple, but non-trivial application together.
 
@@ -8,30 +8,30 @@ This is a single-page web app. Data is served to the Vue front-end via a Laravel
 
 ### Features
 
-* Storefront:
-    * List products
-    * Add items to cart
-    * Mark items as sold-out
-    * Search for products
-    * Check-out dialog box
-    * Connection to Stripe for credit card data
-    * Field sanitization
-    * Validation from Laravel and front-end js
+[x] Storefront:
+    - [x] List products
+    - [x] Add items to cart
+    - [x] Mark items as sold-out
+    - [x] Search for products
+    - [x] Check-out dialog box
+    - [x] Connection to Stripe for credit card data
+    - [x] Field sanitization
+    - [x] Validation from Laravel and front-end js
 
-* Testing:
-    * Browser tests (end-to-end Dusk acceptance tests)
-    * Feature tests
-    * Unit tests
+- [x] Testing:
+    - [x] Browser tests (end-to-end Dusk acceptance tests)
+    - [x] Feature tests
+    - [x] Unit tests
 
 ### To-do
 
 - [ ] Admin panel:
-- [ ] Add, edit, delete products
-- [ ] Show / complete active orders
-- [ ] Show sales chart
-- [ ] Log ins / authentication
-- [ ] Restrictions / authorization
-- [ ] Add, edit, delete users (admin only)
+    - [ ] Add, edit, delete products
+    - [ ] Show / complete active orders
+    - [ ] Show sales chart
+    - [ ] Log ins / authentication
+    - [ ] Restrictions / authorization
+    - [ ] Add, edit, delete users (admin only)
 
 ### Help Wanted
 
