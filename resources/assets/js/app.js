@@ -24,7 +24,7 @@ Vue.component('VCardRow', {
     template: '<div><slot></slot></div>',
 })
 
-Vue.component('shop', require('./components/StoreFront.vue'));
+Vue.component('SStoreFront', require('./components/StoreFront.vue'));
 Vue.component('SToolbar', require('./components/Toolbar.vue'));
 Vue.component('SCoupons', require('./components/Coupons.vue'));
 Vue.component('SProductList', require('./components/ProductList.vue'));
