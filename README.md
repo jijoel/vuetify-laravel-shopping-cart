@@ -1,5 +1,7 @@
 # Vuetify Laravel Shopping Cart
 
+![screenshot](https://github.com/jijoel/vuetify-laravel-shopping-cart/tree/master/docs/checkout_screen.png)
+
 This is an experimental shopping cart with Vuetify and Laravel. It's my attempt to learn how to put all of the pieces of a simple, but non-trivial application together.
 
 This is a single-page web app. Data is served to the Vue front-end via a Laravel API, and kept in a Vuex store.
@@ -23,13 +25,13 @@ This is a single-page web app. Data is served to the Vue front-end via a Laravel
 
 ### To-do
 
-[ ] Admin panel:
-    [ ] Add, edit, delete products
-    [ ] Show / complete active orders
-    [ ] Show sales chart
-    [ ] Log ins / authentication
-    [ ] Restrictions / authorization
-    [ ] Add, edit, delete users (admin only)
+- [ ] Admin panel:
+-     [ ] Add, edit, delete products
+-     [ ] Show / complete active orders
+-     [ ] Show sales chart
+-     [ ] Log ins / authentication
+-     [ ] Restrictions / authorization
+-     [ ] Add, edit, delete users (admin only)
 
 ### Help Wanted
 
