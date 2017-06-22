@@ -26,12 +26,12 @@ This is a single-page web app. Data is served to the Vue front-end via a Laravel
 ### To-do
 
 - [ ] Admin panel:
--     [ ] Add, edit, delete products
--     [ ] Show / complete active orders
--     [ ] Show sales chart
--     [ ] Log ins / authentication
--     [ ] Restrictions / authorization
--     [ ] Add, edit, delete users (admin only)
+- [ ] Add, edit, delete products
+- [ ] Show / complete active orders
+- [ ] Show sales chart
+- [ ] Log ins / authentication
+- [ ] Restrictions / authorization
+- [ ] Add, edit, delete users (admin only)
 
 ### Help Wanted
 
