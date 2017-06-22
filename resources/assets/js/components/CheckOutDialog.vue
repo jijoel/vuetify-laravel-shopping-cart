@@ -188,6 +188,11 @@ export default {
           country: '',
         },
       },
+      rules: {
+        'name': 'required|min:3',
+        'email': 'required|email',
+        'shipping.address': 'required|min:6',
+      }
     };
   },
 
@@ -228,6 +233,7 @@ export default {
 
   watch: {
     value() {
+      this.step = 1;
       this.value && this.loadPaymentProcessor();
     },
   }

@@ -4,12 +4,16 @@ export default {
   data() {
     return {
       rules: {},
-      validator: {}
+      validator: {},
     };
   },
 
   created() {
-    this.validator = new Validator(this.form, this.rules)
+    this.validator = new Validator({
+      el: this,
+      fields: this.form,
+      rules: this.rules,
+    })
   },
 
   methods: {

@@ -22,6 +22,7 @@
     "lodash": "^4.17.4",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
+    "validatorjs": "^3.13.3",
     "vue": "^2.1.10",
     "vue-router": "^2.5.3",
     "vuetify": "https://github.com/vuetifyjs/vuetify-builds.git#dev",
