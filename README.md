@@ -1,6 +1,6 @@
 # Vuetify Laravel Shopping Cart
 
-![screenshot](https://github.com/jijoel/vuetify-laravel-shopping-cart/tree/master/docs/checkout_screen.png)
+![screenshot](/docs/checkout_screen.png?raw=true "Store Front")
 
 This is an experimental shopping cart with Vuetify and Laravel. It's my attempt to learn how to put all of the pieces of a simple, but non-trivial application together.
 
