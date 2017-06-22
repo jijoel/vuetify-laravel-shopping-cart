@@ -8,7 +8,7 @@ This is a single-page web app. Data is served to the Vue front-end via a Laravel
 
 ### Features
 
-[x] Storefront:
+- [x] Storefront:
     - [x] List products
     - [x] Add items to cart
     - [x] Mark items as sold-out
